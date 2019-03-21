@@ -1,2 +1,2 @@
 # F4rSturm
-Cool text-bases adventure game
+Cool text-based adventure game
