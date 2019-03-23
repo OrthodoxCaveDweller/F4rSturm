@@ -15,19 +15,20 @@ void mainMenuInit(){
 
 //prints the games title, to be replaced with ACII art
 void printTitle(){
-    printf("%s\n", title);
+    drawDialog((char *) title, 0);
+    printf("%c", '\n');
 }
 
 //user can set a user name (USER_NAME_LENGTH long, but isn't being checked for yet)
 void setUserName(){
     userName = malloc(USER_NAME_LENGTH + 1);
-    printf("Enter your username:\n");
+    drawDialog("Enter your username:\n", 0);
     scanf("%s", userName);
 }
 
 //clears screen, works on Linux, Mac and Windows
 void clearScreen(){
-    system("@cls||clear");
+    system("clear");
 }
 
 void startGame(){

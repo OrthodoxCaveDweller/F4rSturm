@@ -26,9 +26,17 @@ void drawDialog(char * text, uint8_t bottom){
 }
 
 //delay in milliseconds
+//culprit for failure on Windows??
+#ifndef OS_WINDOWS
 void msDelay(uint32_t milliseconds){
+    printf("test");
     clock_t startTime;
     startTime = clock() / 1000;
     while ((clock()/ 1000) < (startTime + milliseconds))
     ;
 }
+#elif defined(OS_WINDOWS)
+void msDelay(uint32_t milliseconds){
+    printf("TEST");
+}
+#endif

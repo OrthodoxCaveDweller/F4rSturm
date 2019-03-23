@@ -10,17 +10,16 @@
 
 #include "main.h"
 
-
-
 int main(){
-    #ifdef __unix__
+    #if defined(_WIN32) || defined(WIN32)
+        #undef __unix__
+        #define OS_WINDOWS
         #if DEBUG
-            drawDialog("Unix OS detected", 0);
+            printf("Windows OS detected\n", 0);
         #endif
-    #elif defined(_WIN32) || defined(WIN32)
-        #define OS_Windows
+    #elif defined  __unix__
         #if DEBUG
-            drawDialog("Windows OS detected", 0);
+            drawDialog("Unix OS detected\n", 0);
         #endif
     #endif
     mainMenuInit();
