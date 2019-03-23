@@ -20,7 +20,6 @@ char * userName;
 
 //FUNCTIONS
 void mainMenuInit();
-void clearScreen();
 void printTitle();
 void setUserName();
 void startGame();

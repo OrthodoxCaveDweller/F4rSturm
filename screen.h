@@ -22,6 +22,7 @@
 //FUNCTIONS
 
 void drawDialog(char * text, uint8_t bottom);
+void clearScreen();
 void msDelay(uint32_t milliseconds);
 
 #endif
