@@ -1,6 +1,7 @@
 #include "screen.h"
 
-//slowly draws dialog in terminal
+//slowly draws dialog in terminal 
+//DOES NOT WORK IN WINDOWS YET, TO BE FIXED
 void drawDialog(char * text, uint8_t bottom){
     if(strlen(text) == 0){
         printf("ERROR: no text");
