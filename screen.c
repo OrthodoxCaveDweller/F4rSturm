@@ -23,6 +23,12 @@ void drawDialog(char * text, uint8_t bottom){
         fflush(stdout);
         i++;
     }
+
+}
+
+//clears screen, works on Linux, Mac and Windows
+void clearScreen(){
+    system("@cls||clear");
 }
 
 //delay in milliseconds

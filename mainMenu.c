@@ -25,11 +25,6 @@ void setUserName(){
     scanf("%s", userName);
 }
 
-//clears screen, works on Linux, Mac and Windows
-void clearScreen(){
-    system("@cls||clear");
-}
-
 void startGame(){
     drawDialog("Do you want to start the game? y/n ", 0);
     char startGame;
