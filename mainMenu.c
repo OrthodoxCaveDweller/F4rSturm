@@ -7,9 +7,10 @@ void mainMenuInit(){
     clearScreen();
     printTitle();
     setUserName();
-    drawDialog("Welcome to F4rSturm, ");
-    drawDialog(userName);
+    drawDialog("Welcome to F4rSturm, ", 1);
+    drawDialog(userName, 0);
     printf("%c", '\n');
+    startGame();
 }
 
 //prints the games title, to be replaced with ACII art
@@ -27,4 +28,18 @@ void setUserName(){
 //clears screen, works on Linux, Mac and Windows
 void clearScreen(){
     system("@cls||clear");
+}
+
+void startGame(){
+    printf("Do you want to start the game? y/n ");
+    char startGame;
+    scanf(" %c", &startGame);
+
+    if(startGame == 'y' || startGame ==  'Y'){
+        //start the game
+    } else if (startGame == 'n' || startGame == 'N'){
+        exit(0);
+    } else {
+        drawDialog("Invalid answer, try again.\n", 0);
+    }
 }

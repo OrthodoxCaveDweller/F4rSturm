@@ -11,7 +11,8 @@
 #include "ctype.h"
 
 //DEFINES
-#define SCREEN_SIZE 40
+#define SCREEN_SIZE_X 60
+#define SCREEN_SIZE_Y 30
 
 //GLOBAL VARIABLES
 
@@ -20,7 +21,7 @@
 
 //FUNCTIONS
 
-void drawDialog(char * text);
+void drawDialog(char * text, uint8_t bottom);
 void msDelay(uint32_t milliseconds);
 
 #endif
