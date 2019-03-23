@@ -31,7 +31,7 @@ void clearScreen(){
 }
 
 void startGame(){
-    printf("Do you want to start the game? y/n ");
+    drawDialog("Do you want to start the game? y/n ", 0);
     char startGame;
     scanf(" %c", &startGame);
 
