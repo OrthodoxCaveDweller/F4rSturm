@@ -9,11 +9,12 @@ Cool text-based terminal adventure game written in C.
 —————————————————————————————————————————————————— 
 
 Compilation:
-Make sure you have gcc installed, use MinGW or Cygwin
-1. Open command prompt (cmd)
+Download Cygwin.
+Make sure you have gcc installed (gcc --version).
+1. Open Cygwin terminal
 2. Navigate to this repository (cd ~/F4rSturm)
 3. gcc main.c mainMenu.c mainMenu.h screen.c screen.h -o F4rSturm
-4. Run the game with "F4rSturm.exe"
+4. Run the game with "./F4rSturm.exe"
 
 ——————————————————————————————————————————————————
 
