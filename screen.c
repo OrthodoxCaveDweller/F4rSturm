@@ -25,6 +25,19 @@ void drawDialog(char * text, uint8_t bottom){
 
 }
 
+void drawASCIIGraphic(char * fileName){
+    FILE *fp;
+    char textFileStr[MAX_SIZE];
+    fp = fopen(fileName, "r");
+    if(fp == NULL){
+        drawDialog("ERROR, could not open file", 0);
+    }
+    while(fgets(textFileStr, MAX_SIZE, fp) != NULL)
+    printf("%s", textFileStr);
+    printf("\n\n");
+    fclose(fp);
+}
+
 //clears screen
 void clearScreen(){
     system("clear");

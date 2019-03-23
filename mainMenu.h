@@ -22,6 +22,6 @@ char * userName;
 void mainMenuInit();
 void printTitle();
 void setUserName();
-void startGame();
+void startGame(uint8_t option);
 
 #endif

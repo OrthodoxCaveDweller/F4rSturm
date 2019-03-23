@@ -10,13 +10,13 @@ void mainMenuInit(){
     drawDialog("Welcome to F4rSturm, ", 1);
     drawDialog(userName, 0);
     printf("%c", '\n');
-    startGame();
+    startGame(1);
 }
 
 //prints the games title, to be replaced with ACII art
 void printTitle(){
-    drawDialog((char *) title, 0);
-    printf("%c", '\n');
+    char * fileName = "./resources/Title.txt";
+    drawASCIIGraphic(fileName);
 }
 
 //user can set a user name (USER_NAME_LENGTH long, but isn't being checked for yet)
@@ -26,16 +26,20 @@ void setUserName(){
     scanf("%s", userName);
 }
 
-void startGame(){
-    drawDialog("Do you want to start the game? y/n ", 0);
-    char startGame;
-    scanf(" %c", &startGame);
+//asks user to start the game, uint8_t option is used to decide printing the question
+void startGame(uint8_t option){
+    if(option){
+        drawDialog("Do you want to start the game? y/n ", 0);
+    }
+    char startGameChar;
+    scanf(" %c", &startGameChar);
 
-    if(startGame == 'y' || startGame ==  'Y'){
+    if(startGameChar == 'y' || startGameChar ==  'Y'){
         //start the game
-    } else if (startGame == 'n' || startGame == 'N'){
+    } else if (startGameChar == 'n' || startGameChar == 'N'){
         exit(0);
     } else {
         drawDialog("Invalid answer, try again.\n", 0);
+        startGame(0);
     }
 }

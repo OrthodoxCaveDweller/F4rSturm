@@ -21,6 +21,10 @@ int main(){
         #if DEBUG
             drawDialog("Unix OS detected\n", 0);
         #endif
+    #else
+        printf("OS not detected or supported!\n");
+        return -1;
     #endif
     mainMenuInit();
+    return 0;
 }
