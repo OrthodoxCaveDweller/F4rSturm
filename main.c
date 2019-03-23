@@ -15,7 +15,7 @@ int main(){
         #undef __unix__
         #define OS_WINDOWS
         #if DEBUG
-            printf("Windows OS detected\n", 0);
+            drawDialog("Windows OS detected\n", 0);
         #endif
     #elif defined  __unix__
         #if DEBUG

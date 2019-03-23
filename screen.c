@@ -1,7 +1,6 @@
 #include "screen.h"
 
 //slowly draws dialog in terminal 
-//DOES NOT WORK IN WINDOWS YET, TO BE FIXED
 void drawDialog(char * text, uint8_t bottom){
     if(strlen(text) == 0){
         printf("ERROR: no text");
@@ -26,23 +25,25 @@ void drawDialog(char * text, uint8_t bottom){
 
 }
 
-//clears screen, works on Linux, Mac and Windows
+//clears screen
 void clearScreen(){
-    system("@cls||clear");
+    system("clear");
 }
 
 //delay in milliseconds
-//culprit for failure on Windows??
-#ifndef OS_WINDOWS
+#ifdef __linux__
 void msDelay(uint32_t milliseconds){
-    printf("test");
     clock_t startTime;
-    startTime = clock() / 1000;
-    while ((clock()/ 1000) < (startTime + milliseconds))
+    startTime = clock() / CLOCKS_PER_MS;
+    while ((clock()/ CLOCKS_PER_MS) < (startTime + milliseconds))
     ;
 }
-#elif defined(OS_WINDOWS)
+#else
+//clock() implementation is different on Windows
 void msDelay(uint32_t milliseconds){
-    printf("TEST");
+    clock_t startTime;
+    startTime = clock();
+    while (clock() < (startTime + milliseconds))
+    ;
 }
 #endif

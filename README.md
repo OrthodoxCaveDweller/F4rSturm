@@ -8,12 +8,15 @@ Cool text-based terminal adventure game written in C.
  
 —————————————————————————————————————————————————— 
 
+Tested with Cygwin, other gcc compilers for Windows may work, but not guarenteed. 
+Usage with Windows Subsystem for Linux is also an option.
+
 Compilation:
 Download Cygwin.
 Make sure you have gcc installed (gcc --version).
 1. Open Cygwin terminal
 2. Navigate to this repository (cd ~/F4rSturm)
-3. gcc main.c mainMenu.c mainMenu.h screen.c screen.h -o F4rSturm
+3. gcc main.c mainMenu.c mainMenu.h screen.c screen.h -D _WIN32 -o F4rSturm (-D _WIN32 should be omitted when using Windows Subsystem for Linux)
 4. Run the game with "./F4rSturm.exe"
 
 ——————————————————————————————————————————————————
