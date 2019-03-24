@@ -15,5 +15,6 @@
 
 #include "mainMenu.h"
 #include "screen.h"
+#include <ncurses.h>
 
 #endif
