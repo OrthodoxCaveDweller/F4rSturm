@@ -9,9 +9,6 @@ void drawDialog(char * text, uint8_t bottom){
     getmaxyx(stdscr, row, col);
     if(bottom){
         move(60, col/2);
-        // for(int i = 0; i < SCREEN_SIZE_Y - 7; i++){
-        //     printf("%c", '\n');
-        // }
     }
 
     uint8_t i = 0;
@@ -29,6 +26,7 @@ void drawDialog(char * text, uint8_t bottom){
 
 }
 
+//Now broken on Windows
 void drawASCIIGraphic(char * fileName){
     int row, col;
     FILE *fp;
