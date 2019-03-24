@@ -18,7 +18,7 @@ Download Cygwin (more info on Cygwin  install at https://youtu.be/bZw-18gy_YE).
 Make sure you have gcc installed (gcc --version).
 1. Open Cygwin terminal
 2. Navigate to this repository (cd ~/F4rSturm)
-3. gcc main.c mainMenu.c mainMenu.h screen.c screen.h -D _WIN32 -o F4rSturm (-D _WIN32 should be omitted when using Windows Subsystem for Linux)
+3. gcc main.c mainMenu.c mainMenu.h screen.c screen.h -D _WIN32 -lncurses -o F4rSturm (-D _WIN32 should be omitted when using Windows Subsystem for Linux)
 4. Run the game with "./F4rSturm.exe"
 
 ——————————————————————————————————————————————————
@@ -33,5 +33,6 @@ Compilation:
 1. Open a terminal
 2. Navigate to this repository (cd ~/F4rSturm)
 3. Make sure you have gcc installed (gcc --version)
-4. gcc main.c mainMenu.c mainMenu.h screen.c screen.h -o F4rSturm
+4. gcc main.c mainMenu.c mainMenu.h screen.c screen.h -lncurses -o F4rSturm
+4.a ./compile.sh can also be used
 5. Run the game with "./F4rSturm"
