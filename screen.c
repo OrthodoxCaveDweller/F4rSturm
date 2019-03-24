@@ -2,14 +2,16 @@
 
 //slowly draws dialog in terminal 
 void drawDialog(char * text, uint8_t bottom){
+    int row, col;
     if(strlen(text) == 0){
         printf("ERROR: no text");
     }
-
+    getmaxyx(stdscr, row, col);
     if(bottom){
-        for(int i = 0; i < SCREEN_SIZE_Y - 7; i++){
-            printf("%c", '\n');
-        }
+        move(60, col/2);
+        // for(int i = 0; i < SCREEN_SIZE_Y - 7; i++){
+        //     printf("%c", '\n');
+        // }
     }
 
     uint8_t i = 0;
@@ -17,7 +19,9 @@ void drawDialog(char * text, uint8_t bottom){
         if(i == SCREEN_SIZE_X){
             printf("%c", '\n');
         }
-        printf("%c", text[i]);
+        
+        addch(text[i] | A_BOLD);
+        refresh();
         msDelay(50);
         fflush(stdout);
         i++;
@@ -26,14 +30,17 @@ void drawDialog(char * text, uint8_t bottom){
 }
 
 void drawASCIIGraphic(char * fileName){
+    int row, col;
     FILE *fp;
     char textFileStr[MAX_SIZE];
+
     fp = fopen(fileName, "r");
     if(fp == NULL){
-        drawDialog("ERROR, could not open file", 0);
+        drawDialog("ERROR, could not open file", FALSE);
     }
     while(fgets(textFileStr, MAX_SIZE, fp) != NULL)
-    printf("%s", textFileStr);
+    printw("%s", textFileStr);
+    refresh();
     printf("\n\n");
     fclose(fp);
 }

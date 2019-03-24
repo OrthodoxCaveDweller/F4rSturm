@@ -8,6 +8,7 @@
 #include <string.h>
 #include <time.h>
 #include <sys/time.h>
+#include <ncurses.h>
 #include "ctype.h"
 
 //DEFINES

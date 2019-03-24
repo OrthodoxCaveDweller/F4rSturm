@@ -15,16 +15,23 @@ int main(){
         #undef __unix__
         #define OS_WINDOWS
         #if DEBUG
-            drawDialog("Windows OS detected\n", 0);
+            printf("Windows OS detected\n");
         #endif
     #elif defined  __unix__
         #if DEBUG
-            drawDialog("Unix OS detected\n", 0);
+            printf("Unix OS detected\n");
         #endif
     #else
         printf("OS not detected or supported!\n");
         return -1;
     #endif
     mainMenuInit();
+    #if DEBUG
+        drawDialog("Entering loop", FALSE);
+    #endif
+    while(1){
+        endGame();
+    }
+    endwin();
     return 0;
 }

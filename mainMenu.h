@@ -23,5 +23,6 @@ void mainMenuInit();
 void printTitle();
 void setUserName();
 void startGame(uint8_t option);
+void endGame();
 
 #endif
