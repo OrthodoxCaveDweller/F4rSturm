@@ -34,5 +34,5 @@ Compilation:
 2. Navigate to this repository (cd ~/F4rSturm)
 3. Make sure you have gcc installed (gcc --version)
 4. gcc main.c mainMenu.c mainMenu.h screen.c screen.h -lncurses -o F4rSturm
-4.a ./compile.sh can also be used
+ 4.a ./compile.sh can also be used
 5. Run the game with "./F4rSturm"
