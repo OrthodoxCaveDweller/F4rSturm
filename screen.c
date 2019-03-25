@@ -23,7 +23,7 @@ void drawDialog(char * text, uint8_t bottom){
 
 }
 
-//Now broken on Windows
+//Now broken on Windows!
 void drawASCIIGraphic(char * fileName){
     int row, col;
     FILE *fp;
