@@ -23,7 +23,7 @@ Compilation:
  
 —————————————————————————————————————————————————— 
 
-Tested with Cygwin, other gcc compilers for Windows may work, but not guarenteed. 
+Tested with Cygwin, other Linux terminal emulators with gcc compilers for Windows may work, but not guarenteed. 
 Usage with Windows Subsystem for Linux is also an option.
 
 ncurses is required, install via Cygwin package manager. More info at https://youtu.be/bZw-18gy_YE.
