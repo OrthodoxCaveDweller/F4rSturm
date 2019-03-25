@@ -25,6 +25,7 @@
 
 void drawDialog(char * text, uint8_t bottom);
 void drawASCIIGraphic(char * fileName);
+char * readTextFromFile(char * fileName);
 void clearScreen();
 void msDelay(uint32_t milliseconds);
 

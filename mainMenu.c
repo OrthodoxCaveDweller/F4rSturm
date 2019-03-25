@@ -16,6 +16,7 @@ void mainMenuInit(){
     drawDialog("Welcome to F4rSturm, ", 1);
     drawDialog(userName, 0);
     printw("\n");
+    drawDialog(readTextFromFile("./resources/Dialogs/Test.txt"), FALSE);
     startGame(1);
 }
 

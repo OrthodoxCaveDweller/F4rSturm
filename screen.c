@@ -1,6 +1,7 @@
 #include "screen.h"
 
 //slowly draws dialog in terminal 
+//TODO add speed option to drawDialog
 void drawDialog(char * text, uint8_t bottom){
     int row, col;
     if(strlen(text) == 0){
@@ -13,10 +14,6 @@ void drawDialog(char * text, uint8_t bottom){
 
     uint8_t i = 0;
     while(text[i] != '\0'){
-        if(i == SCREEN_SIZE_X){
-            printf("%c", '\n');
-        }
-        
         addch(text[i] | A_BOLD);
         refresh();
         msDelay(50);
@@ -41,6 +38,21 @@ void drawASCIIGraphic(char * fileName){
     refresh();
     printf("\n\n");
     fclose(fp);
+}
+
+char * readTextFromFile(char * fileName){
+    FILE *fp;
+    char textFileStr[MAX_SIZE];
+    char * returnString;
+
+    fp = fopen(fileName, "r");
+    if(fp == NULL){
+        drawDialog("ERROR, could not open file", FALSE);
+    }
+    while(fgets(textFileStr, MAX_SIZE, fp) != NULL);
+    fclose(fp);
+    returnString = textFileStr;
+    return returnString;
 }
 
 //clears screen
