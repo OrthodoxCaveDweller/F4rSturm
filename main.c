@@ -27,7 +27,7 @@ int main(){
     #endif
     mainMenuInit();
     #if DEBUG
-        drawDialog("Entering loop", FALSE);
+        drawDialog("Entering loop", FALSE, NORMAL_DELAY);
     #endif
     while(1){
         endGame();

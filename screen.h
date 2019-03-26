@@ -16,6 +16,9 @@
 #define SCREEN_SIZE_Y 30
 #define CLOCKS_PER_MS 1000
 #define MAX_SIZE 5000
+#define NORMAL_DELAY 500
+#define FAST_DELAY 100
+#define SLOW_DELAY 70
 
 //GLOBAL VARIABLES
 
@@ -23,7 +26,7 @@
 
 //FUNCTIONS
 
-void drawDialog(char * text, uint8_t bottom);
+void drawDialog(char * text, uint8_t bottom, uint16_t delay);
 void drawASCIIGraphic(char * fileName);
 char * readTextFromFile(char * fileName);
 void clearScreen();

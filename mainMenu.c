@@ -13,10 +13,10 @@ void mainMenuInit(){
     move(row - 6, 0);
     setUserName();
     
-    drawDialog("Welcome to F4rSturm, ", 1);
-    drawDialog(userName, 0);
+    drawDialog("Welcome to F4rSturm, ", 1, NORMAL_DELAY);
+    drawDialog(userName, 0, NORMAL_DELAY);
     printw("\n");
-    drawDialog(readTextFromFile("./resources/Dialogs/Test.txt"), FALSE);
+    drawDialog(readTextFromFile("./resources/Dialogs/Test.txt"), FALSE, FAST_DELAY);
     startGame(1);
 }
 
@@ -29,7 +29,7 @@ void printTitle(){
 //user can set a user name (USER_NAME_LENGTH long, but isn't being checked for yet)
 void setUserName(){
     userName = malloc(USER_NAME_LENGTH + 1);
-    drawDialog("Enter your username:\n", TRUE);
+    drawDialog("Enter your username:\n", TRUE, NORMAL_DELAY);
     scanw("%s", userName);
 }
 
@@ -37,7 +37,7 @@ void setUserName(){
 //WINDOWS VERSION LOOPS ON THE RECURSION, TO BE FIXED
 void startGame(uint8_t option){
     if(option){
-        drawDialog("Do you want to start the game? y/n ", FALSE);
+        drawDialog("Do you want to start the game? y/n ", FALSE, NORMAL_DELAY);
     }
     char startGameChar;
     scanf(" %c", &startGameChar);
@@ -48,7 +48,7 @@ void startGame(uint8_t option){
     } else if (startGameChar == 'n' || startGameChar == 'N'){
         endGame();
     } else {
-        drawDialog("Invalid answer, try again.\n", FALSE);
+        drawDialog("Invalid answer, try again.\n", FALSE, NORMAL_DELAY);
         startGame(0);
     }
 }

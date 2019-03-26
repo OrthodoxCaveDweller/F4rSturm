@@ -2,7 +2,7 @@
 
 //slowly draws dialog in terminal 
 //TODO add speed option to drawDialog
-void drawDialog(char * text, uint8_t bottom){
+void drawDialog(char * text, uint8_t bottom, uint16_t delay){
     int row, col;
     if(strlen(text) == 0){
         printf("ERROR: no text");
@@ -16,7 +16,7 @@ void drawDialog(char * text, uint8_t bottom){
     while(text[i] != '\0'){
         addch(text[i] | A_BOLD);
         refresh();
-        msDelay(50);
+        msDelay(delay);
         fflush(stdout);
         i++;
     }
@@ -31,7 +31,7 @@ void drawASCIIGraphic(char * fileName){
 
     fp = fopen(fileName, "r");
     if(fp == NULL){
-        drawDialog("ERROR, could not open file", FALSE);
+        drawDialog("ERROR, could not open file", FALSE, NORMAL_DELAY);
     }
     while(fgets(textFileStr, MAX_SIZE, fp) != NULL)
     printw("%s", textFileStr);
@@ -47,7 +47,7 @@ char * readTextFromFile(char * fileName){
 
     fp = fopen(fileName, "r");
     if(fp == NULL){
-        drawDialog("ERROR, could not open file", FALSE);
+        drawDialog("ERROR, could not open file", FALSE, NORMAL_DELAY);
     }
     while(fgets(textFileStr, MAX_SIZE, fp) != NULL);
     fclose(fp);
@@ -64,7 +64,7 @@ void clearScreen(){
 #ifdef __linux__
 void msDelay(uint32_t milliseconds){
     clock_t startTime;
-    startTime = clock() / CLOCKS_PER_MS;
+    startTime = clock() / 1000000;
     while ((clock()/ CLOCKS_PER_MS) < (startTime + milliseconds))
     ;
 }
