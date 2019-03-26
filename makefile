@@ -3,7 +3,7 @@
 #	A. Delis (ad@di.uoa.gr)
 #
 
-OBJS	= main.o mainMenu.o screen.o
+OBJS	= bin/main.o bin/mainMenu.o bin/screen.o
 SOURCE	= main.c mainMenu.c screen.c
 HEADER	= main.h mainMenu.h screen.h
 OUT	= F4rSturm
@@ -19,14 +19,14 @@ all: $(OBJS)
 
 
 # create/compile the individual files >>separately<<
-main.o: main.c
-	$(CC) $(FLAGS) main.c 
+bin/main.o: main.c
+	$(CC) $(FLAGS) main.c -o bin/main.o
 
-mainMenu.o: mainMenu.c
-	$(CC) $(FLAGS) mainMenu.c 
+bin/mainMenu.o: mainMenu.c
+	$(CC) $(FLAGS) mainMenu.c -o bin/mainMenu.o
 
-screen.o: screen.c
-	$(CC) $(FLAGS) screen.c 
+bin/screen.o: screen.c
+	$(CC) $(FLAGS) screen.c -o bin/screen.o
 
 
 # clean house
