@@ -4,29 +4,29 @@
 #
 
 OBJS	= bin/main.o bin/mainMenu.o bin/screen.o
-SOURCE	= main.c mainMenu.c screen.c
-HEADER	= main.h mainMenu.h screen.h
+SOURCE	= src/main.c src/mainMenu.c src/screen.c
+HEADER	= src/main.h src/mainMenu.h src/screen.h
 OUT	= F4rSturm
 CC	 = gcc
-FLAGS	 = -g -c -Wall
-LFLAGS	 = 
+FLAGS	 = -g -c -Wall 
+LFLAGS	 = -lncurses
 # -g option enables debugging mode 
 # -c flag generates object code for separate files
 
 
 all: $(OBJS)
-	$(CC) -g $(OBJS) -lncurses -o $(OUT) $(LFLAGS)
+	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS)
 
 
 # create/compile the individual files >>separately<<
-bin/main.o: main.c
-	$(CC) $(FLAGS) main.c -o bin/main.o
+bin/main.o: src/main.c
+	$(CC) $(FLAGS) src/main.c -o bin/main.o 
 
-bin/mainMenu.o: mainMenu.c
-	$(CC) $(FLAGS) mainMenu.c -o bin/mainMenu.o
+bin/mainMenu.o: src/mainMenu.c
+	$(CC) $(FLAGS) src/mainMenu.c -o bin/mainMenu.o
 
-bin/screen.o: screen.c
-	$(CC) $(FLAGS) screen.c -o bin/screen.o
+bin/screen.o: src/screen.c
+	$(CC) $(FLAGS) src/screen.c -o bin/screen.o
 
 
 # clean house
