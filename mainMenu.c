@@ -22,7 +22,7 @@ void mainMenuInit(){
 
 //prints the games title
 void printTitle(){
-    char * fileName = "./resources/Title.txt"; 
+    char * fileName = "./resources/Title_3.txt"; 
     drawASCIIGraphic(fileName);
 }
 
