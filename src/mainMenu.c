@@ -17,6 +17,7 @@ void mainMenuInit(){
     drawDialog(userName, 0, NORMAL_DELAY);
     printw("\n");
     drawDialog(readTextFromFile("./resources/Dialogs/Test.txt"), FALSE, FAST_DELAY);
+    printf("YOOOO");
     startGame(1);
 }
 

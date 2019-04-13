@@ -25,7 +25,7 @@ void drawDialog(char * text, uint8_t bottom, uint16_t delay){
 
 //Now broken on Windows!
 void drawASCIIGraphic(char * fileName){
-    int row, col;
+    //int row, col;
     FILE *fp;
     char textFileStr[MAX_SIZE];
 
@@ -49,9 +49,9 @@ char * readTextFromFile(char * fileName){
     if(fp == NULL){
         drawDialog("ERROR, could not open file", FALSE, NORMAL_DELAY);
     }
-    while(fgets(textFileStr, MAX_SIZE, fp) != NULL);
+    while(fgets(textFileStr, MAX_SIZE, fp) != NULL)
+    returnString = (char*) textFileStr;
     fclose(fp);
-    returnString = textFileStr;
     return returnString;
 }
 
