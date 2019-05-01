@@ -1,6 +1,6 @@
 # F4rSturm
 
-Text-based terminal adventure game written in C.
+## Text-based terminal adventure game written in C.
 
 ——————————————————————————————————————————————————
 
@@ -12,10 +12,10 @@ ncurses is required, install with "[apt-get] install libncurses5-dev libncursesw
 
 Compilation:
 1. Open a terminal
-2. Navigate to this repository (cd ~/F4rSturm)
-3. Make sure you have gcc installed (gcc --version)
-4. gcc main.c mainMenu.c mainMenu.h screen.c screen.h -lncurses -o F4rSturm (./compile.sh can also be used)
-5. Run the game with "./F4rSturm"
+1. Navigate to this repository (cd ~/F4rSturm)
+1. Make sure you have gcc installed (gcc --version)
+1. gcc main.c mainMenu.c mainMenu.h screen.c screen.h -lncurses -o F4rSturm (./compile.sh can also be used)
+1. Run the game with "./F4rSturm"
 
 —————————————————————————————————————————————————— 
 
