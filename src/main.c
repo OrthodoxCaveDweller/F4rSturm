@@ -11,28 +11,28 @@
 #include "main.h"
 
 int main(){
-    #if defined(_WIN32) || defined(WIN32)
-        #undef __unix__
+#if defined(_WIN32) || defined(WIN32)
+	#undef __unix__
         #define OS_WINDOWS
         #if DEBUG
             printf("Windows OS detected\n");
         #endif
-    #elif defined  __unix__
-        #if DEBUG
+#elif defined  __unix__
+	#if DEBUG
             printf("Unix OS detected\n");
         #endif
-    #else
-        printf("OS not detected or supported!\n");
-        return -1;
-    #endif
-    mainMenuInit();
-    #if DEBUG
-        drawDialog("Entering loop", FALSE, NORMAL_DELAY);
-    #endif
-    while(1){
+#else
+	printf("OS not detected or supported!\n");
+	return -1;
+#endif
+	mainMenuInit();
+#if DEBUG
+	drawDialog("Entering loop", FALSE, NORMAL_DELAY);
+#endif
+	while(1){
 
-        //endGame();
-    }
-    endwin();
-    return 0;
+		//endGame();
+	}
+	endwin();
+	return 0;
 }

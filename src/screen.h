@@ -21,6 +21,8 @@
 #define SLOW_DELAY 70
 
 //GLOBAL VARIABLES
+uint8_t max_y, max_x;
+WINDOW * mainwin;
 
 //VARIABLES
 
