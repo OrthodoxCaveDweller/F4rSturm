@@ -17,7 +17,7 @@ void mainMenuInit(){
     drawDialog(userName, 0, NORMAL_DELAY);
     printw("\n");
     drawDialog(readTextFromFile("./resources/Dialogs/Test.txt"), FALSE, FAST_DELAY);
-    printf("YOOOO");
+    printw("\n");
     startGame(1);
 }
 
@@ -38,15 +38,17 @@ void setUserName(){
 //WINDOWS VERSION LOOPS ON THE RECURSION, TO BE FIXED
 void startGame(uint8_t option){
     if(option){
-        drawDialog("Do you want to start the game? y/n ", FALSE, NORMAL_DELAY);
+        drawDialog("Do you want to start the game? y/n \n", FALSE, NORMAL_DELAY);
     }
     char startGameChar;
     scanf(" %c", &startGameChar);
 
     if(startGameChar == 'y' || startGameChar ==  'Y'){
         //start the game
+        printf("Starting game");
         printw("\n");
     } else if (startGameChar == 'n' || startGameChar == 'N'){
+        drawDialog("Exiting game", TRUE, NORMAL_DELAY);
         endGame();
     } else {
         drawDialog("Invalid answer, try again.\n", FALSE, NORMAL_DELAY);
@@ -57,4 +59,24 @@ void startGame(uint8_t option){
 void endGame(){
     endwin();
     exit(0);
+}
+
+void drawOptions(){
+
+}
+
+void optionDown(){
+
+}
+
+void optionUp(){
+
+}
+
+void selectOption(){
+
+}
+
+void exitOption(){
+
 }

@@ -24,5 +24,10 @@ void printTitle();
 void setUserName();
 void startGame(uint8_t option);
 void endGame();
+void drawOptions();
+void optionDown();
+void optionUp();
+void selectOption();
+void exitOption();
 
 #endif

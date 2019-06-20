@@ -30,7 +30,8 @@ int main(){
         drawDialog("Entering loop", FALSE, NORMAL_DELAY);
     #endif
     while(1){
-        endGame();
+
+        //endGame();
     }
     endwin();
     return 0;

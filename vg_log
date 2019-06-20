@@ -1,0 +1,38 @@
+==281== Memcheck, a memory error detector
+==281== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==281== Using Valgrind-3.12.0.SVN and LibVEX; rerun with -h for copyright info
+==281== Command: ./F4rSturm
+==281== Parent PID: 4
+==281== 
+==281== error calling PR_SET_PTRACER, vgdb might block
+==281== Invalid read of size 1
+==281==    at 0x5319170: __strcpy_sse2_unaligned (strcpy-sse2-unaligned.S:47)
+==281==    by 0x1090AF: drawDialog (screen.c:9)
+==281==    by 0x108F38: mainMenuInit (mainMenu.c:19)
+==281==    by 0x108E09: main (main.c:28)
+==281==  Address 0xffeffed90 is on thread 1's stack
+==281==  4968 bytes below stack pointer
+==281== 
+==281== Invalid read of size 1
+==281==    at 0x4C2EE9B: strcpy (vg_replace_strmem.c:506)
+==281==    by 0x1090AF: drawDialog (screen.c:9)
+==281==    by 0x108F38: mainMenuInit (mainMenu.c:19)
+==281==    by 0x108E09: main (main.c:28)
+==281==  Address 0xffeffed91 is on thread 1's stack
+==281==  4967 bytes below stack pointer
+==281== 
+==281== 
+==281== HEAP SUMMARY:
+==281==     in use at exit: 326,892 bytes in 416 blocks
+==281==   total heap usage: 431 allocs, 15 frees, 353,357 bytes allocated
+==281== 
+==281== LEAK SUMMARY:
+==281==    definitely lost: 30,000 bytes in 6 blocks
+==281==    indirectly lost: 0 bytes in 0 blocks
+==281==      possibly lost: 0 bytes in 0 blocks
+==281==    still reachable: 296,892 bytes in 410 blocks
+==281==         suppressed: 0 bytes in 0 blocks
+==281== Rerun with --leak-check=full to see details of leaked memory
+==281== 
+==281== For counts of detected and suppressed errors, rerun with: -v
+==281== ERROR SUMMARY: 56 errors from 2 contexts (suppressed: 0 from 0)

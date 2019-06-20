@@ -4,7 +4,13 @@
 //TODO add speed option to drawDialog
 void drawDialog(char * text, uint8_t bottom, uint16_t delay){
     int row, col;
-    if(strlen(text) == 0){
+    char *temp = (char *)malloc(5000);
+
+    strcpy(temp, text);
+    uint16_t pos = strlen(temp);
+    temp[pos + 1] = '\0';
+
+    if(strlen(temp) == 0){
         printf("ERROR: no text");
     }
     getmaxyx(stdscr, row, col);
@@ -13,8 +19,8 @@ void drawDialog(char * text, uint8_t bottom, uint16_t delay){
     }
 
     uint8_t i = 0;
-    while(text[i] != '\0'){
-        addch(text[i] | A_BOLD);
+    while(temp[i] != '\0'){
+        addch(temp[i] | A_BOLD);
         refresh();
         msDelay(delay);
         fflush(stdout);
@@ -28,6 +34,11 @@ void drawASCIIGraphic(char * fileName){
     //int row, col;
     FILE *fp;
     char textFileStr[MAX_SIZE];
+
+    getmaxyx(stdscr, row, col);
+
+    move(60, col/2);
+
 
     fp = fopen(fileName, "r");
     if(fp == NULL){
