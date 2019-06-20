@@ -9,6 +9,9 @@ void mainMenuInit(){
     getmaxyx(stdscr, row, col);
     scrollok(stdscr, TRUE);
     keypad(stdscr, TRUE);
+
+    //move((row/2) - 5, 10);
+    wmove(stdscr, (row/2) - 5, col/2);
     printTitle();
     move(row - 6, 0);
     setUserName();
@@ -18,7 +21,7 @@ void mainMenuInit(){
     printw("\n");
     drawDialog(readTextFromFile("./resources/Dialogs/Test.txt"), FALSE, FAST_DELAY);
     printw("\n");
-    startGame(1);
+    startGame(TRUE);
 }
 
 //prints the games title

@@ -31,14 +31,9 @@ void drawDialog(char * text, uint8_t bottom, uint16_t delay){
 
 //Now broken on Windows!
 void drawASCIIGraphic(char * fileName){
-    //int row, col;
+    int row, col;
     FILE *fp;
     char textFileStr[MAX_SIZE];
-
-    getmaxyx(stdscr, row, col);
-
-    move(60, col/2);
-
 
     fp = fopen(fileName, "r");
     if(fp == NULL){
