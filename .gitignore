@@ -57,3 +57,5 @@ dkms.conf
 F4rSturm
 
 \.idea
+\bin
+!\bin\README.md
