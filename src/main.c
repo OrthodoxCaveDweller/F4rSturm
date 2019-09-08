@@ -30,7 +30,7 @@ int main(){
 	drawDialog("Entering loop", FALSE, NORMAL_DELAY);
 #endif
 	while(1){
-		getmaxyx();
+		//getmaxyx();
 		//endGame();
 	}
 	endwin();

@@ -1,12 +1,14 @@
 #include "mainMenu.h"
 
 const char * title = "F4rSturm";
+uint8_t continueGame = 0;
+uint8_t selectedOption = 0;
 
 //makes the main menu
 void mainMenuInit(){
-	int row, col;
+	//int row, col;
 	initscr();
-
+	start_color();
 
 	scrollok(stdscr, TRUE);
 	keypad(stdscr, TRUE);
@@ -15,6 +17,28 @@ void mainMenuInit(){
 
 	move(0, col - 50);
 	printTitle();
+
+	init_pair(1, COLOR_BLACK, COLOR_WHITE);
+	init_pair(2, COLOR_WHITE, COLOR_BLACK);
+
+	drawOptions();
+	while(!continueGame){
+		int input;
+		input = wgetch(stdscr);
+		switch(input){
+			case KEY_UP:
+				moveOption(1);
+				break;
+			case KEY_DOWN:
+				moveOption(-1);
+				break;
+			case 10:
+				selectOption();
+			default: 
+				break;
+		}
+	}
+
 	move(row - 6, 0);
 	setUserName();
 
@@ -67,19 +91,57 @@ void endGame(){
 }
 
 void drawOptions(){
+	move(row - 19, 10);
+	attron(COLOR_PAIR(2));
+	drawDialog("About game", FALSE, NORMAL_DELAY);
+	move(row - 20, 10);
+	attron(COLOR_PAIR(1));
+	drawDialog("Start game\n", FALSE, NORMAL_DELAY);
+	attron(COLOR_PAIR(2));
 
 }
 
-void optionDown(){
+void moveOption(int8_t direction){
+	if(direction < 0 && selectedOption == 0){
+		selectedOption = LAST_OPTION;
+	} else if(direction > 0 && selectedOption == LAST_OPTION){
+		selectedOption = FIRST_OPTION;
+	} else {
+		selectedOption = selectedOption + direction;
+	}
 
-}
-
-void optionUp(){
-
+	switch(selectedOption){
+		case 0:
+			move(row - 19, 10);
+			attron(COLOR_PAIR(2));
+			printw("About game\n");
+			move(row - 20, 10);
+			attron(COLOR_PAIR(1));
+			printw("Start game\n");
+			break;
+		case 1:
+			move(row - 19, 10);
+			attron(COLOR_PAIR(1));
+			printw("About game\n");
+			move(row - 20, 10);
+			attron(COLOR_PAIR(2));
+			printw("Start game\n");
+			break;
+		default:
+			break;
+	}
+	attron(COLOR_PAIR(2));
 }
 
 void selectOption(){
-
+	switch(selectedOption){
+		case 0:
+			continueGame = 1;
+			break;
+		case 1:
+			//todo
+			break;
+	}
 }
 
 void exitOption(){
