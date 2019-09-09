@@ -163,8 +163,9 @@ void aboutScreen(){
 	uint8_t returnToMenu = 0;
 
 	clear();
+	move(row/2, (col/2) - 20);
 	drawDialog("Game made in C by Balint Harmse. Enjoy!", FALSE, NORMAL_DELAY);
-	move(1, 0);
+	move((row/2 + 1), (col/2) - 20);
 	drawDialog("Press 'q' to return to the main menu.", FALSE, NORMAL_DELAY);
 	while(!returnToMenu){
 		int input;

@@ -20,7 +20,7 @@ void drawDialog(char * text, uint8_t bottom, uint16_t delay){
 
 	uint8_t i = 0;
 	while(temp[i] != '\0'){
-		addch(temp[i] | A_BOLD);
+		addch(temp[i] /*| A_BOLD*/); //BOLD disabled because of color incompatibility
 		refresh();
 		msDelay(delay);
 		fflush(stdout);
