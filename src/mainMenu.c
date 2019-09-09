@@ -20,7 +20,9 @@ void mainMenuInit(){
 
 	init_pair(1, COLOR_BLACK, COLOR_WHITE);
 	init_pair(2, COLOR_WHITE, COLOR_BLACK);
+	init_pair(3, COLOR_WHITE, COLOR_BLACK);
 
+	//TODO: Disable typing unless required
 	drawOptions();
 	while(!continueGame){
 		int input;
@@ -45,7 +47,7 @@ void mainMenuInit(){
 	drawDialog("Welcome to F4rSturm, ", 1, NORMAL_DELAY);
 	drawDialog(userName, 0, NORMAL_DELAY);
 	printw("\n");
-	drawDialog(readTextFromFile("./resources/Dialogs/Test.txt"), FALSE, FAST_DELAY);
+	//drawDialog(readTextFromFile("./resources/Dialogs/Test.txt"), FALSE, FAST_DELAY);
 	printw("\n");
 	startGame(TRUE);
 }
@@ -74,7 +76,7 @@ void startGame(uint8_t option){
 
 	if(startGameChar == 'y' || startGameChar ==  'Y'){
 		//start the game
-		printf("Starting game");
+		drawDialog("Starting game", TRUE, NORMAL_DELAY);
 		printw("\n");
 	} else if (startGameChar == 'n' || startGameChar == 'N'){
 		drawDialog("Exiting game", TRUE, NORMAL_DELAY);
@@ -97,7 +99,7 @@ void drawOptions(){
 	move(row - 20, 10);
 	attron(COLOR_PAIR(1));
 	drawDialog("Start game\n", FALSE, NORMAL_DELAY);
-	attron(COLOR_PAIR(2));
+	attron(COLOR_PAIR(2)); 
 
 }
 
@@ -140,10 +142,43 @@ void selectOption(){
 			break;
 		case 1:
 			//todo
+			aboutScreen();
 			break;
 	}
 }
 
 void exitOption(){
 
+}
+
+void enableTyping(){
+
+}
+
+void disableTyping(){
+
+}
+
+void aboutScreen(){
+	uint8_t returnToMenu = 0;
+
+	clear();
+	drawDialog("Game made in C by Balint Harmse. Enjoy!", FALSE, NORMAL_DELAY);
+	move(1, 0);
+	drawDialog("Press 'q' to return to the main menu.", FALSE, NORMAL_DELAY);
+	while(!returnToMenu){
+		int input;
+		input = wgetch(stdscr);
+		switch(input){
+			case 'q':
+				clear();
+				move(0,0);
+				printTitle();
+				drawOptions();
+				returnToMenu = 1;
+				break;
+			default: 
+				break;
+		}
+	}
 }

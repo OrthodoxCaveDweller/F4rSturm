@@ -72,7 +72,7 @@ void msDelay(uint32_t milliseconds){
     clock_t startTime;
     startTime = clock() / 1000000;
     while ((clock()/ CLOCKS_PER_MS) < (startTime + milliseconds))
-    ;
+    	;
 }
 #else
 //clock() implementation is different on Windows

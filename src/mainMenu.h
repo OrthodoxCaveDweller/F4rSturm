@@ -31,5 +31,8 @@ void drawOptions();
 void moveOption(int8_t direction);
 void selectOption();
 void exitOption();
+void disableTyping();
+void eneableTyping(); 
+void aboutScreen();
 
 #endif
