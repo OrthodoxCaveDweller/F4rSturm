@@ -18,7 +18,7 @@
 #define MAX_SIZE 5000
 #define NORMAL_DELAY 500
 #define FAST_DELAY 100
-#define SLOW_DELAY 70
+#define SLOW_DELAY 1000
 
 //GLOBAL VARIABLES
 uint8_t max_y, max_x;

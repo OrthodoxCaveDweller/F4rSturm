@@ -6,7 +6,6 @@ uint8_t selectedOption = 0;
 
 //makes the main menu
 void mainMenuInit(){
-	//int row, col;
 	initscr();
 	start_color();
 
@@ -47,7 +46,7 @@ void mainMenuInit(){
 	drawDialog("Welcome to F4rSturm, ", 1, NORMAL_DELAY);
 	drawDialog(userName, 0, NORMAL_DELAY);
 	printw("\n");
-	//drawDialog(readTextFromFile("./resources/Dialogs/Test.txt"), FALSE, FAST_DELAY);
+	drawDialog(readTextFromFile("./resources/Dialogs/Test.txt"), FALSE, FAST_DELAY);
 	printw("\n");
 	startGame(TRUE);
 }
@@ -161,12 +160,13 @@ void disableTyping(){
 
 void aboutScreen(){
 	uint8_t returnToMenu = 0;
+	selectedOption = 0;
 
 	clear();
 	move(row/2, (col/2) - 20);
-	drawDialog("Game made in C by Balint Harmse. Enjoy!", FALSE, NORMAL_DELAY);
+	drawDialog("Game made in C by Balint Harmse. Enjoy!", FALSE, SLOW_DELAY);
 	move((row/2 + 1), (col/2) - 20);
-	drawDialog("Press 'q' to return to the main menu.", FALSE, NORMAL_DELAY);
+	drawDialog("Press 'q' to return to the main menu.", FALSE, SLOW_DELAY);
 	while(!returnToMenu){
 		int input;
 		input = wgetch(stdscr);
