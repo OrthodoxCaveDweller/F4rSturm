@@ -3,9 +3,9 @@
 #	A. Delis (ad@di.uoa.gr)
 #
 
-OBJS	= bin/main.o bin/mainMenu.o bin/screen.o
-SOURCE	= src/main.c src/mainMenu.c src/screen.c
-HEADER	= src/main.h src/mainMenu.h src/screen.h
+OBJS	= bin/main.o bin/mainMenu.o bin/screen.o bin/cJSON.o
+SOURCE	= src/main.c src/mainMenu.c src/screen.c src/lib/cJSON.c
+HEADER	= src/main.h src/mainMenu.h src/screen.h src/lib/cJSON.h
 OUT	= F4rSturm
 CC	 = gcc
 FLAGS	 = -g -c -Wall 
@@ -28,6 +28,8 @@ bin/mainMenu.o: src/mainMenu.c
 bin/screen.o: src/screen.c
 	$(CC) $(FLAGS) src/screen.c -o bin/screen.o
 
+bin/cJSON.o: src/lib/cJSON.c
+	$(CC) $(FLAGS) src/lib/cJSON.c -o bin/cJSON.o
 
 # clean house
 clean:

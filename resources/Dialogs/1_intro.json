@@ -1,0 +1,26 @@
+{
+    "DialogText": "Greetings adventurer, you have 4 options: 1, 2, 3 & 4. Choose wisely",
+    "Image": "../Images/test",
+    "options": [
+        {
+            "Text": "First option",
+            "Response": "Fuck you",
+            "NextDialog": "Fuck_you.json"
+        },
+        {
+            "Text": "Second option",
+            "Response": "You mother a cunt",
+            "NextDialog": "Nigger.json"
+        },
+        {
+            "Text": "Third option",
+            "Response": "Holy C is the most holiest of programming languages",
+            "NextDialog": "TerryDavis.json"
+        },
+        {
+            "Text": "Fourth option",
+            "Response": "This is the most difficult problem in programming",
+            "NextDialog": "Voodoo.json"
+        }
+    ]
+}

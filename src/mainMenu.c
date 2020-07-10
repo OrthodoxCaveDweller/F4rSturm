@@ -46,9 +46,12 @@ void mainMenuInit(){
 	drawDialog("Welcome to F4rSturm, ", 1, NORMAL_DELAY);
 	drawDialog(userName, 0, NORMAL_DELAY);
 	printw("\n");
-	drawDialog(readTextFromFile("./resources/Dialogs/Test.txt"), FALSE, FAST_DELAY);
+	//printw(readTextFromFile("./resources/Dialogs/1_intro.txt"));
+	//drawDialog(readTextFromFile("./resources/Dialogs/1_intro.txt"), FALSE, NORMAL_DELAY);
 	printw("\n");
 	startGame(TRUE);
+	clearScreen();
+	drawDialogScreen("./resources/Images/test");
 }
 
 //prints the games title

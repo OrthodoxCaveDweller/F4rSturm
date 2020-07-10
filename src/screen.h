@@ -10,6 +10,7 @@
 #include <sys/time.h>
 #include <ncurses.h>
 #include "ctype.h"
+#include "lib/cJSON.h"
 
 //DEFINES
 #define SCREEN_SIZE_X 60
@@ -33,5 +34,6 @@ void drawASCIIGraphic(char * fileName);
 char * readTextFromFile(char * fileName);
 void clearScreen();
 void msDelay(uint32_t milliseconds);
+void drawDialogScreen(char * dialogFile);
 
 #endif

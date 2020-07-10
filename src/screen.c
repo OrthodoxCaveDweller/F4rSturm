@@ -1,7 +1,6 @@
 #include "screen.h"
 
 //slowly draws dialog in terminal
-//TODO add speed option to drawDialog
 void drawDialog(char *text, uint8_t bottom, uint16_t delay)
 {
 	int row, col;
@@ -33,7 +32,7 @@ void drawDialog(char *text, uint8_t bottom, uint16_t delay)
 }
 
 //Now broken on Windows!
-void drawASCIIGraphic(char *fileName)
+void drawASCIIGraphic(char *fileName) //TODO add argument to draw or return?? Then no need for two seperate function, drawASCIIGraphic() & readTextFromFile()
 {
 	FILE *fp;
 	char textFileStr[MAX_SIZE];
@@ -73,6 +72,34 @@ char *readTextFromFile(char *fileName)
 void clearScreen()
 {
 	system("clear");
+}
+
+void drawDialogScreen(char * dialogFile)
+{
+	FILE *fp;
+	char textFileStr[MAX_SIZE];
+	cJSON *json = cJSON_CreateObject();
+
+	fp = fopen(dialogFile, "r");
+	if (fp == NULL)
+	{
+		drawDialog("ERROR, could not open file", FALSE, NORMAL_DELAY);
+	}
+
+	json = cJSON_Parse(textFileStr);
+
+	char *string = cJSON_Print(json);
+
+	if (string == NULL)
+    {
+        fprintf(stderr, "Failed to print monitor.\n");
+    }
+
+	//drawDialog(string, FALSE, NORMAL_DELAY);
+
+	drawASCIIGraphic("./resources/Images/test");
+	free(string);
+	cJSON_Delete(json);
 }
 
 //delay in milliseconds
