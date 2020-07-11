@@ -51,7 +51,7 @@ void mainMenuInit(){
 	printw("\n");
 	startGame(TRUE);
 	clearScreen();
-	drawDialogScreen("./resources/Images/test");
+	drawDialogScreen("./resources/Dialogs/1_intro.json");
 }
 
 //prints the games title

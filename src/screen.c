@@ -74,32 +74,71 @@ void clearScreen()
 	system("clear");
 }
 
-void drawDialogScreen(char * dialogFile)
-{
-	FILE *fp;
-	char textFileStr[MAX_SIZE];
-	cJSON *json = cJSON_CreateObject();
+cJSON * readJSONFile(char* fileName){
+	char *ConfigurationConfigContent;
+	cJSON *ConfigurationJsonData;
 
-	fp = fopen(dialogFile, "r");
-	if (fp == NULL)
+
+	//Check if file exist
+	if (access(fileName, 1) == -1)
 	{
-		drawDialog("ERROR, could not open file", FALSE, NORMAL_DELAY);
+		fprintf(stderr, "CONFIG: Unable to open file, name faulty!\n");
+		return 1;
 	}
 
-	json = cJSON_Parse(textFileStr);
+	//Open file in Read Binary mode
+	FILE *FileContent = fopen(fileName, "rb");
+	int _StringSize, _ReadSize;
+
+	if (!FileContent)
+	{
+		fprintf(stderr, "CONFIG: Unable to open file content!\n");
+		exit;
+	}
+
+	//Get file size and put content in correct order
+	fseek(FileContent, 0, SEEK_END);
+	_StringSize = ftell(FileContent);
+	rewind(FileContent);
+
+	//Copy file content to memmory
+	ConfigurationConfigContent = (char *)malloc(sizeof(char) * (_StringSize + 1));
+	_ReadSize = fread(ConfigurationConfigContent, sizeof(char), _StringSize, FileContent);
+	ConfigurationConfigContent[_StringSize] = '\0';
+	fclose(FileContent);
+	if (_StringSize != _ReadSize)
+	{
+		fprintf(stderr, "CONFIG: Not able to read complete JSON file!\n");
+		free(ConfigurationConfigContent);
+		ConfigurationConfigContent = NULL;
+		exit;
+	}
+
+	//Parse filecontent to cJSON datatype
+	ConfigurationJsonData = cJSON_Parse(ConfigurationConfigContent);
+	return ConfigurationJsonData;
+}
+
+void drawDialogScreen(char * dialogFile)
+{
+	// FILE *fp;
+	char *textFileStr = malloc(MAX_SIZE);
+	cJSON *json = cJSON_CreateObject();
+
+	json = readJSONFile(dialogFile);
 
 	char *string = cJSON_Print(json);
 
-	if (string == NULL)
-    {
-        fprintf(stderr, "Failed to print monitor.\n");
-    }
+	// if (string == NULL)
+    // {
+    //     fprintf(stderr, "Failed to print monitor.\n");
+    // }
 
-	//drawDialog(string, FALSE, NORMAL_DELAY);
+	drawDialog(string, FALSE, NORMAL_DELAY);
 
-	drawASCIIGraphic("./resources/Images/test");
-	free(string);
-	cJSON_Delete(json);
+	//drawASCIIGraphic("./resources/Images/test");
+	// free(string);
+	// cJSON_Delete(json);
 }
 
 //delay in milliseconds

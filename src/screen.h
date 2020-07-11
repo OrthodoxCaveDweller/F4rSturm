@@ -32,6 +32,7 @@ WINDOW * mainwin;
 void drawDialog(char * text, uint8_t bottom, uint16_t delay);
 void drawASCIIGraphic(char * fileName);
 char * readTextFromFile(char * fileName);
+cJSON * readJSONFile(char* fileName);
 void clearScreen();
 void msDelay(uint32_t milliseconds);
 void drawDialogScreen(char * dialogFile);
