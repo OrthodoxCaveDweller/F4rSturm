@@ -122,23 +122,43 @@ cJSON * readJSONFile(char* fileName){
 void drawDialogScreen(char * dialogFile)
 {
 	// FILE *fp;
-	char *textFileStr = malloc(MAX_SIZE);
-	cJSON *json = cJSON_CreateObject();
+	// char *textFileStr = malloc(MAX_SIZE);
+	// cJSON *json = cJSON_CreateObject();
 
-	json = readJSONFile(dialogFile);
+	// json = readJSONFile(dialogFile);
 
-	char *string = cJSON_Print(json);
+	const cJSON *DialogText = NULL;
+
+	cJSON *json = readJSONFile(dialogFile);
+	DialogText = cJSON_GetObjectItem(json, "DialogText");
+    if (cJSON_IsString(DialogText) && (DialogText->valuestring != NULL))
+    {
+        drawDialog(DialogText->valuestring, FALSE, NORMAL_DELAY);
+		drawDialog("\n", FALSE, NORMAL_DELAY);
+    }
+
+	cJSON *optionsArray = cJSON_GetObjectItem(json, "options");
+	cJSON *option1 = cJSON_GetArrayItem(optionsArray, 1);
+	cJSON *option1text = cJSON_GetObjectItem(option1, "Text");
+
+	if (cJSON_IsString(option1text) && (option1text->valuestring != NULL))
+    {
+        drawDialog(option1text->valuestring, FALSE, NORMAL_DELAY);
+		drawDialog("\n", FALSE, NORMAL_DELAY);
+    }
+
+	// char *string = cJSON_Print(json);
 
 	// if (string == NULL)
     // {
     //     fprintf(stderr, "Failed to print monitor.\n");
     // }
 
-	drawDialog(string, FALSE, NORMAL_DELAY);
+	// drawDialog(string, FALSE, NORMAL_DELAY);
 
 	//drawASCIIGraphic("./resources/Images/test");
 	// free(string);
-	// cJSON_Delete(json);
+	cJSON_Delete(json);
 }
 
 //delay in milliseconds
