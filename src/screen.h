@@ -36,5 +36,6 @@ cJSON * readJSONFile(char* fileName);
 void clearScreen();
 void msDelay(uint32_t milliseconds);
 void drawDialogScreen(char * dialogFile);
+void drawOption(char * optionText, uint8_t optionNr);
 
 #endif

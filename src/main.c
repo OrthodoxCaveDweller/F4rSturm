@@ -29,10 +29,11 @@ int main(){
 #if DEBUG
 	drawDialog("Entering loop", FALSE, NORMAL_DELAY);
 #endif
+	drawDialogScreen("./resources/Dialogs/1_intro.json");
 	while(1){
-		//getmaxyx();
+		
+		// getmaxyx(stdscr, row, col);
 		//endGame();
 	}
-	endwin();
 	return 0;
 }

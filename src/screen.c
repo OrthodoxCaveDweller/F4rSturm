@@ -3,6 +3,7 @@
 //slowly draws dialog in terminal
 void drawDialog(char *text, uint8_t bottom, uint16_t delay)
 {
+	// TODO: uint8?
 	int row, col;
 	char *temp = (char *)malloc(5000);
 
@@ -29,6 +30,7 @@ void drawDialog(char *text, uint8_t bottom, uint16_t delay)
 		fflush(stdout);
 		i++;
 	}
+	free(temp);
 }
 
 //Now broken on Windows!
@@ -116,48 +118,92 @@ cJSON * readJSONFile(char* fileName){
 
 	//Parse filecontent to cJSON datatype
 	ConfigurationJsonData = cJSON_Parse(ConfigurationConfigContent);
+	free(ConfigurationConfigContent);
 	return ConfigurationJsonData;
 }
 
 void drawDialogScreen(char * dialogFile)
 {
-	// FILE *fp;
-	// char *textFileStr = malloc(MAX_SIZE);
-	// cJSON *json = cJSON_CreateObject();
-
-	// json = readJSONFile(dialogFile);
-
+	int row, col;
 	const cJSON *DialogText = NULL;
+	uint8_t continueGame;
 
 	cJSON *json = readJSONFile(dialogFile);
 	DialogText = cJSON_GetObjectItem(json, "DialogText");
     if (cJSON_IsString(DialogText) && (DialogText->valuestring != NULL))
     {
+		getmaxyx(stdscr, row, col);
+		move((row * 0.80)-2, col * 0.1);
         drawDialog(DialogText->valuestring, FALSE, NORMAL_DELAY);
 		drawDialog("\n", FALSE, NORMAL_DELAY);
     }
 
-	cJSON *optionsArray = cJSON_GetObjectItem(json, "options");
-	cJSON *option1 = cJSON_GetArrayItem(optionsArray, 1);
-	cJSON *option1text = cJSON_GetObjectItem(option1, "Text");
+	for(uint16_t i=0; i<4;i++)
+	{
+		cJSON *optionsArray = cJSON_GetObjectItem(json, "options");
+		cJSON *option = cJSON_GetArrayItem(optionsArray, i);
+		cJSON *optiontext = cJSON_GetObjectItem(option, "Text");
+		
+		if (cJSON_IsString(optiontext) && (optiontext->valuestring != NULL))
+		{
+			getmaxyx(stdscr, row, col);
+			switch(i)
+			{
+				case 0:
+					move(row * 0.80, col * 0.1);
+					break;
+				case 1:
+					move(row * 0.80, col * 0.6);
+					break;
+				case 2:
+					move(row * 0.90, col * 0.1);
+					break;
+				case 3:
+					move(row * 0.90, col * 0.6);
+					break;
+			}
+			drawDialog(optiontext->valuestring, FALSE, FAST_DELAY);
+			// drawDialog(option1text->valuestring, FALSE, NORMAL_DELAY);
+			drawDialog("\n", FALSE, NORMAL_DELAY);
+		}
+	}
+	for(uint16_t i=0; i<col;i++)
+	{
+		move((row * 0.80)-1, i);
+		drawDialog("-", FALSE, FAST_DELAY);
+	}
+	for(uint16_t i=0; i < row * 0.20; i++)
+	{
+		move((row * 0.80)+i, col*0.5);
+		drawDialog("|", FALSE, FAST_DELAY);
+	}
+	for(uint16_t i=0; i<col;i++)
+	{
+		move((row * 0.90)-1, i);
+		drawDialog("-", FALSE, FAST_DELAY);
+	}
+	getmaxyx(stdscr, row, col);
+	move(row*0.1,col*0.5);
 
-	if (cJSON_IsString(option1text) && (option1text->valuestring != NULL))
-    {
-        drawDialog(option1text->valuestring, FALSE, NORMAL_DELAY);
-		drawDialog("\n", FALSE, NORMAL_DELAY);
-    }
+	drawASCIIGraphic("./resources/Images/test");
 
-	// char *string = cJSON_Print(json);
+	while(!continueGame){
+		int input;
+		input = wgetch(stdscr);
+		switch(input){
+			case KEY_UP:
+				moveOption(1);
+				break;
+			case KEY_DOWN:
+				moveOption(-1);
+				break;
+			case 10:
+				selectOption();
+			default: 
+				break;
+		}
+	}
 
-	// if (string == NULL)
-    // {
-    //     fprintf(stderr, "Failed to print monitor.\n");
-    // }
-
-	// drawDialog(string, FALSE, NORMAL_DELAY);
-
-	//drawASCIIGraphic("./resources/Images/test");
-	// free(string);
 	cJSON_Delete(json);
 }
 

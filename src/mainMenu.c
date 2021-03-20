@@ -51,7 +51,6 @@ void mainMenuInit(){
 	printw("\n");
 	startGame(TRUE);
 	clearScreen();
-	drawDialogScreen("./resources/Dialogs/1_intro.json");
 }
 
 //prints the games title
@@ -91,6 +90,7 @@ void startGame(uint8_t option){
 
 void endGame(){
 	endwin();
+	free(userName);
 	exit(0);
 }
 
