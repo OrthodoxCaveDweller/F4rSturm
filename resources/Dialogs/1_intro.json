@@ -1,6 +1,6 @@
 {
     "DialogText": "Greetings adventurer, you have 4 options: 1, 2, 3 & 4. Choose wisely",
-    "Image": "./Images/test",
+    "Image": "./Images/test2",
     "options": [
         {
             "Text": "First option",
@@ -10,7 +10,7 @@
         {
             "Text": "Second option",
             "Response": "You mother a cunt",
-            "NextDialog": "Nigger.json"
+            "NextDialog": "Test.json"
         },
         {
             "Text": "Third option",
