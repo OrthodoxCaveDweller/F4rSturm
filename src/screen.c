@@ -76,6 +76,7 @@ void clearScreen()
 	system("clear");
 }
 
+//TODO: make seperate file for JSON reading/writing etc.
 cJSON * readJSONFile(char* fileName){
 	char *ConfigurationConfigContent;
 	cJSON *ConfigurationJsonData;
