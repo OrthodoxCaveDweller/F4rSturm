@@ -11,6 +11,7 @@
 #include <ncurses.h>
 #include "ctype.h"
 #include "lib/cJSON.h"
+#include <unistd.h>
 
 //DEFINES
 #define SCREEN_SIZE_X 60

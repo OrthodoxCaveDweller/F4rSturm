@@ -23,12 +23,12 @@ int row, col;
 
 //FUNCTIONS
 void mainMenuInit();
-void printTitle();
+void printTitle();                  //screen.h
 void setUserName();
 void startGame(uint8_t option);
 void endGame();
-void drawOptions();
-void moveOption(int8_t direction);
+void drawOptions();                 //screen.h
+void moveOption(int8_t direction);  //screen.h
 void selectOption();
 void exitOption();
 void disableTyping();

@@ -86,7 +86,7 @@ cJSON * readJSONFile(char* fileName){
 	if (access(fileName, 1) == -1)
 	{
 		fprintf(stderr, "CONFIG: Unable to open file, name faulty!\n");
-		return 1;
+		exit;
 	}
 
 	//Open file in Read Binary mode

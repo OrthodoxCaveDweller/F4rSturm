@@ -54,6 +54,7 @@ void mainMenuInit(){
 }
 
 //prints the games title
+//screen.h
 void printTitle(){
 	char * fileName = "./resources/Title_3.txt";
 	drawASCIIGraphic(fileName);
@@ -94,6 +95,7 @@ void endGame(){
 	exit(0);
 }
 
+//screen.h
 void drawOptions(){
 	move(row - 19, 10);
 	attron(COLOR_PAIR(2));
@@ -105,6 +107,7 @@ void drawOptions(){
 
 }
 
+//screen.h
 void moveOption(int8_t direction){
 	if(direction < 0 && selectedOption == 0){
 		selectedOption = LAST_OPTION;
