@@ -28,10 +28,10 @@ void mainMenuInit(){
 		input = wgetch(stdscr);
 		switch(input){
 			case KEY_UP:
-				moveOption(1);
+				selectedOption = moveOption(1, selectedOption);
 				break;
 			case KEY_DOWN:
-				moveOption(-1);
+				selectedOption = moveOption(-1, selectedOption);
 				break;
 			case 10:
 				selectOption();
@@ -108,37 +108,37 @@ void drawOptions(){
 }
 
 //screen.h
-void moveOption(int8_t direction){
-	if(direction < 0 && selectedOption == 0){
-		selectedOption = LAST_OPTION;
-	} else if(direction > 0 && selectedOption == LAST_OPTION){
-		selectedOption = FIRST_OPTION;
-	} else {
-		selectedOption = selectedOption + direction;
-	}
+// void moveOption(int8_t direction){
+// 	if(direction < 0 && selectedOption == 0){
+// 		selectedOption = LAST_OPTION;
+// 	} else if(direction > 0 && selectedOption == LAST_OPTION){
+// 		selectedOption = FIRST_OPTION;
+// 	} else {
+// 		selectedOption = selectedOption + direction;
+// 	}
 
-	switch(selectedOption){
-		case 0:
-			move(row - 19, 10);
-			attron(COLOR_PAIR(2));
-			printw("About game\n");
-			move(row - 20, 10);
-			attron(COLOR_PAIR(1));
-			printw("Start game\n");
-			break;
-		case 1:
-			move(row - 19, 10);
-			attron(COLOR_PAIR(1));
-			printw("About game\n");
-			move(row - 20, 10);
-			attron(COLOR_PAIR(2));
-			printw("Start game\n");
-			break;
-		default:
-			break;
-	}
-	attron(COLOR_PAIR(2));
-}
+// 	switch(selectedOption){
+// 		case 0:
+// 			move(row - 19, 10);
+// 			attron(COLOR_PAIR(2));
+// 			printw("About game\n");
+// 			move(row - 20, 10);
+// 			attron(COLOR_PAIR(1));
+// 			printw("Start game\n");
+// 			break;
+// 		case 1:
+// 			move(row - 19, 10);
+// 			attron(COLOR_PAIR(1));
+// 			printw("About game\n");
+// 			move(row - 20, 10);
+// 			attron(COLOR_PAIR(2));
+// 			printw("Start game\n");
+// 			break;
+// 		default:
+// 			break;
+// 	}
+// 	attron(COLOR_PAIR(2));
+// }
 
 void selectOption(){
 	switch(selectedOption){

@@ -4,7 +4,6 @@
 void drawDialog(char *text, uint8_t bottom, uint16_t delay)
 {
 	// TODO: uint8?
-	int row, col;
 	char *temp = (char *)malloc(5000);
 
 	strcpy(temp, text);
@@ -125,7 +124,6 @@ cJSON * readJSONFile(char* fileName){
 
 void drawDialogScreen(char * dialogFile)
 {
-	int row, col;
 	const cJSON *DialogText = NULL;
 	uint8_t continueGame;
 
@@ -188,24 +186,57 @@ void drawDialogScreen(char * dialogFile)
 
 	drawASCIIGraphic("./resources/Images/test");
 
-	while(!continueGame){
-		int input;
-		input = wgetch(stdscr);
-		switch(input){
-			case KEY_UP:
-				moveOption(1);
-				break;
-			case KEY_DOWN:
-				moveOption(-1);
-				break;
-			case 10:
-				selectOption();
-			default: 
-				break;
-		}
-	}
+	// while(!continueGame){
+	// 	int input;
+	// 	input = wgetch(stdscr);
+	// 	switch(input){
+	// 		case KEY_UP:
+	// 			moveOption(1);
+	// 			break;
+	// 		case KEY_DOWN:
+	// 			moveOption(-1);
+	// 			break;
+	// 		case 10:
+	// 			selectOption();
+	// 		default: 
+	// 			break;
+	// 	}
+	// }
 
 	cJSON_Delete(json);
+}
+
+uint8_t moveOption(int8_t direction, uint8_t selectedOption){
+	if(direction < 0 && selectedOption == 0){
+		selectedOption = LAST_OPTION;
+	} else if(direction > 0 && selectedOption == LAST_OPTION){
+		selectedOption = FIRST_OPTION;
+	} else {
+		selectedOption = selectedOption + direction;
+	}
+
+	getmaxyx(stdscr, row, col);
+	switch(selectedOption){
+		case 0:
+			move(row - 19, 10);
+			attron(COLOR_PAIR(2));
+			printw("About game\n");
+			move(row - 20, 10);
+			attron(COLOR_PAIR(1));
+			printw("Start game\n");
+			return selectedOption;
+		case 1:
+			move(row - 19, 10);
+			attron(COLOR_PAIR(1));
+			printw("About game\n");
+			move(row - 20, 10);
+			attron(COLOR_PAIR(2));
+			printw("Start game\n");
+			return selectedOption;
+		default:
+			break;
+	}
+	attron(COLOR_PAIR(2));
 }
 
 //delay in milliseconds
