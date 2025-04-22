@@ -8,16 +8,13 @@
 #include <string.h>
 #include "screen.h"
 #include "ctype.h"
+#include "global.h"
 
 //DEFINES
 #define USER_NAME_LENGTH 16
-#define FIRST_OPTION 0
-#define LAST_OPTION 1
 
 //GLOBAL VARIABLES
 //const char * title = "F4rSturm";
-char * userName;
-int row, col;
 
 //VARIABLES
 
@@ -28,7 +25,7 @@ void setUserName();
 void startGame(uint8_t option);
 void endGame();
 void drawOptions();                 //screen.h
-void moveOption(int8_t direction);  //screen.h
+// void moveOption(int8_t direction);  //screen.h
 void selectOption();
 void exitOption();
 void disableTyping();

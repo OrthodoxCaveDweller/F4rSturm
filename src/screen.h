@@ -12,6 +12,7 @@
 #include "ctype.h"
 #include "lib/cJSON.h"
 #include <unistd.h>
+#include "global.h"
 
 //DEFINES
 #define SCREEN_SIZE_X 60
@@ -21,6 +22,8 @@
 #define NORMAL_DELAY 500
 #define FAST_DELAY 100
 #define SLOW_DELAY 1000
+#define FIRST_OPTION 0
+#define LAST_OPTION 1
 
 //GLOBAL VARIABLES
 // uint8_t max_y, max_x;
@@ -38,5 +41,6 @@ void clearScreen();
 void msDelay(uint32_t milliseconds);
 void drawDialogScreen(char * dialogFile);
 void drawOption(char * optionText, uint8_t optionNr);
+uint8_t moveOption(int8_t direction, uint8_t selectedOption);
 
 #endif
