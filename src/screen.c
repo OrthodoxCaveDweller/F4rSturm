@@ -75,75 +75,19 @@ void clearScreen()
 	system("clear");
 }
 
-//TODO: make seperate file for JSON reading/writing etc.
-cJSON * readJSONFile(char* fileName){
-	char *ConfigurationConfigContent;
-	cJSON *ConfigurationJsonData;
-
-
-	//Check if file exist
-	if (access(fileName, 1) == -1)
-	{
-		fprintf(stderr, "CONFIG: Unable to open file, name faulty!\n");
-		exit;
-	}
-
-	//Open file in Read Binary mode
-	FILE *FileContent = fopen(fileName, "rb");
-	int _StringSize, _ReadSize;
-
-	if (!FileContent)
-	{
-		fprintf(stderr, "CONFIG: Unable to open file content!\n");
-		exit;
-	}
-
-	//Get file size and put content in correct order
-	fseek(FileContent, 0, SEEK_END);
-	_StringSize = ftell(FileContent);
-	rewind(FileContent);
-
-	//Copy file content to memmory
-	ConfigurationConfigContent = (char *)malloc(sizeof(char) * (_StringSize + 1));
-	_ReadSize = fread(ConfigurationConfigContent, sizeof(char), _StringSize, FileContent);
-	ConfigurationConfigContent[_StringSize] = '\0';
-	fclose(FileContent);
-	if (_StringSize != _ReadSize)
-	{
-		fprintf(stderr, "CONFIG: Not able to read complete JSON file!\n");
-		free(ConfigurationConfigContent);
-		ConfigurationConfigContent = NULL;
-		exit;
-	}
-
-	//Parse filecontent to cJSON datatype
-	ConfigurationJsonData = cJSON_Parse(ConfigurationConfigContent);
-	free(ConfigurationConfigContent);
-	return ConfigurationJsonData;
-}
-
 void drawDialogScreen(char * dialogFile)
 {
-	const cJSON *DialogText = NULL;
-	uint8_t continueGame;
-
-	cJSON *json = readJSONFile(dialogFile);
-	DialogText = cJSON_GetObjectItem(json, "DialogText");
-    if (cJSON_IsString(DialogText) && (DialogText->valuestring != NULL))
+	char * dialogText = getDialogText(dialogFile);
+	char ** options = getOptions(dialogFile);
     {
 		getmaxyx(stdscr, row, col);
 		move((row * 0.80)-2, col * 0.1);
-        drawDialog(DialogText->valuestring, FALSE, NORMAL_DELAY);
+        drawDialog(dialogText, FALSE, NORMAL_DELAY);
 		drawDialog("\n", FALSE, NORMAL_DELAY);
     }
 
-	for(uint16_t i=0; i<4;i++)
+	for(uint8_t i=0; i<NUMBER_OF_OPTIONS;i++)
 	{
-		cJSON *optionsArray = cJSON_GetObjectItem(json, "options");
-		cJSON *option = cJSON_GetArrayItem(optionsArray, i);
-		cJSON *optiontext = cJSON_GetObjectItem(option, "Text");
-		
-		if (cJSON_IsString(optiontext) && (optiontext->valuestring != NULL))
 		{
 			getmaxyx(stdscr, row, col);
 			switch(i)
@@ -161,8 +105,7 @@ void drawDialogScreen(char * dialogFile)
 					move(row * 0.90, col * 0.6);
 					break;
 			}
-			drawDialog(optiontext->valuestring, FALSE, FAST_DELAY);
-			// drawDialog(option1text->valuestring, FALSE, NORMAL_DELAY);
+			drawDialog(options[i], FALSE, FAST_DELAY);
 			drawDialog("\n", FALSE, NORMAL_DELAY);
 		}
 	}
@@ -184,29 +127,13 @@ void drawDialogScreen(char * dialogFile)
 	getmaxyx(stdscr, row, col);
 	move(row*0.1,col*0.5);
 
-	drawASCIIGraphic("./resources/Images/test");
+	drawASCIIGraphic(getASCIIImage(dialogFile));
 
-	// while(!continueGame){
-	// 	int input;
-	// 	input = wgetch(stdscr);
-	// 	switch(input){
-	// 		case KEY_UP:
-	// 			moveOption(1);
-	// 			break;
-	// 		case KEY_DOWN:
-	// 			moveOption(-1);
-	// 			break;
-	// 		case 10:
-	// 			selectOption();
-	// 		default: 
-	// 			break;
-	// 	}
-	// }
+	waitForAndSelectOption();
 
-	cJSON_Delete(json);
 }
 
-uint8_t moveOption(int8_t direction, uint8_t selectedOption){
+uint8_t moveOption(int8_t direction){
 	if(direction < 0 && selectedOption == 0){
 		selectedOption = LAST_OPTION;
 	} else if(direction > 0 && selectedOption == LAST_OPTION){

@@ -10,9 +10,10 @@
 #include <sys/time.h>
 #include <ncurses.h>
 #include "ctype.h"
-#include "lib/cJSON.h"
 #include <unistd.h>
 #include "global.h"
+#include "resources.h"
+#include "game.h"
 
 //DEFINES
 #define SCREEN_SIZE_X 60
@@ -36,11 +37,10 @@
 void drawDialog(char * text, uint8_t bottom, uint16_t delay);
 void drawASCIIGraphic(char * fileName);
 char * readTextFromFile(char * fileName);
-cJSON * readJSONFile(char* fileName);
 void clearScreen();
 void msDelay(uint32_t milliseconds);
 void drawDialogScreen(char * dialogFile);
 void drawOption(char * optionText, uint8_t optionNr);
-uint8_t moveOption(int8_t direction, uint8_t selectedOption);
+uint8_t moveOption(int8_t direction);
 
 #endif

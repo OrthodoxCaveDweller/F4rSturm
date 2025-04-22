@@ -1,8 +1,6 @@
 #include "mainMenu.h"
 
 const char * title = "F4rSturm";
-uint8_t continueGame = 0;
-uint8_t selectedOption = 0;
 
 //makes the main menu
 void mainMenuInit(){
@@ -28,10 +26,10 @@ void mainMenuInit(){
 		input = wgetch(stdscr);
 		switch(input){
 			case KEY_UP:
-				selectedOption = moveOption(1, selectedOption);
+				selectedOption = moveOption(1);
 				break;
 			case KEY_DOWN:
-				selectedOption = moveOption(-1, selectedOption);
+				selectedOption = moveOption(-1);
 				break;
 			case 10:
 				selectOption();
@@ -142,10 +140,10 @@ void drawOptions(){
 
 void selectOption(){
 	switch(selectedOption){
-		case 0:
+		case START_GAME:
 			continueGame = 1;
 			break;
-		case 1:
+		case ABOUT_GAME:
 			//todo
 			aboutScreen();
 			break;
@@ -166,7 +164,7 @@ void disableTyping(){
 
 void aboutScreen(){
 	uint8_t returnToMenu = 0;
-	selectedOption = 0;
+	selectedOption = START_GAME;
 
 	clear();
 	move(row/2, (col/2) - 20);
