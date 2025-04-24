@@ -41,6 +41,6 @@ void clearScreen();
 void msDelay(uint32_t milliseconds);
 void drawDialogScreen(char * dialogFile);
 void drawOption(char * optionText, uint8_t optionNr);
-uint8_t moveOption(int8_t direction);
+uint8_t moveOptionMainMenu(int8_t direction);
 
 #endif

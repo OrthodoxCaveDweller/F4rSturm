@@ -25,7 +25,6 @@ void setUserName();
 void startGame(uint8_t option);
 void endGame();
 void drawOptions();                 //screen.h
-// void moveOption(int8_t direction);  //screen.h
 void selectOption();
 void exitOption();
 void disableTyping();

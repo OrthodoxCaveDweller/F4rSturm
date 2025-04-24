@@ -32,7 +32,6 @@ void drawDialog(char *text, uint8_t bottom, uint16_t delay)
 	free(temp);
 }
 
-//Now broken on Windows!
 void drawASCIIGraphic(char *fileName) //TODO add argument to draw or return?? Then no need for two seperate function, drawASCIIGraphic() & readTextFromFile()
 {
 	FILE *fp;
@@ -42,6 +41,7 @@ void drawASCIIGraphic(char *fileName) //TODO add argument to draw or return?? Th
 	if (fp == NULL)
 	{
 		drawDialog("ERROR, could not open file", FALSE, NORMAL_DELAY);
+		exit(-1);
 	}
 	while (fgets(textFileStr, MAX_SIZE, fp) != NULL)
 	{
@@ -128,22 +128,19 @@ void drawDialogScreen(char * dialogFile)
 	move(row*0.1,col*0.5);
 
 	drawASCIIGraphic(getASCIIImage(dialogFile));
-
-	waitForAndSelectOption();
-
 }
 
-uint8_t moveOption(int8_t direction){
-	if(direction < 0 && selectedOption == 0){
-		selectedOption = LAST_OPTION;
-	} else if(direction > 0 && selectedOption == LAST_OPTION){
-		selectedOption = FIRST_OPTION;
+uint8_t moveOptionMainMenu(int8_t direction){
+	if(direction < 0 && selectedOption1d == 0){
+		selectedOption1d = LAST_OPTION;
+	} else if(direction > 0 && selectedOption1d == LAST_OPTION){
+		selectedOption1d = FIRST_OPTION;
 	} else {
-		selectedOption = selectedOption + direction;
+		selectedOption1d = selectedOption1d + direction;
 	}
 
 	getmaxyx(stdscr, row, col);
-	switch(selectedOption){
+	switch(selectedOption1d){
 		case 0:
 			move(row - 19, 10);
 			attron(COLOR_PAIR(2));
@@ -151,7 +148,7 @@ uint8_t moveOption(int8_t direction){
 			move(row - 20, 10);
 			attron(COLOR_PAIR(1));
 			printw("Start game\n");
-			return selectedOption;
+			return selectedOption1d;
 		case 1:
 			move(row - 19, 10);
 			attron(COLOR_PAIR(1));
@@ -159,11 +156,49 @@ uint8_t moveOption(int8_t direction){
 			move(row - 20, 10);
 			attron(COLOR_PAIR(2));
 			printw("Start game\n");
-			return selectedOption;
+			return selectedOption1d;
 		default:
 			break;
 	}
 	attron(COLOR_PAIR(2));
+}
+
+uint8_t moveOption(struct moveDirection moveDirection)
+{
+	getmaxyx(stdscr, row, col);
+	if (moveDirection.x){
+		switch (selectedOption2d){
+			case TOP_LEFT:
+				selectedOption2d = TOP_RIGHT;
+				break;
+			case TOP_RIGHT:
+				selectedOption2d = TOP_LEFT;
+				break;
+			case BOTTOM_LEFT:
+				selectedOption2d = BOTTOM_RIGHT;
+				break;
+			case BOTTOM_RIGHT:
+				selectedOption2d = BOTTOM_LEFT ;
+				break;
+		}
+	}
+
+	if (moveDirection.y){
+		switch (selectedOption2d){
+			case TOP_LEFT:
+				selectedOption2d = BOTTOM_LEFT;
+				break;
+			case TOP_RIGHT:
+				selectedOption2d = BOTTOM_RIGHT;
+				break;
+			case BOTTOM_LEFT:
+				selectedOption2d = TOP_LEFT;
+				break;
+			case BOTTOM_RIGHT:
+				selectedOption2d = TOP_RIGHT ;
+				break;
+		}
+	}
 }
 
 //delay in milliseconds
