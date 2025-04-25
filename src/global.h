@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 //ENUMS
-extern enum selectedOption2d
+enum selectedOption2d
 {
     TOP_LEFT,
     TOP_RIGHT,
