@@ -20,11 +20,9 @@
 
 //FUNCTIONS
 void mainMenuInit();
-void printTitle();                  //screen.h
 void setUserName();
 void startGame(uint8_t option);
 void endGame();
-void drawOptions();                 //screen.h
 void selectOption();
 void exitOption();
 void disableTyping();

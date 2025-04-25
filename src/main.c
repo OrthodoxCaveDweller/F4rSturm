@@ -29,13 +29,6 @@ int main(){
 #if DEBUG
 	drawDialog("Entering loop", FALSE, NORMAL_DELAY);
 #endif
-	// drawDialogScreen("./resources/Dialogs/1_intro.json");
 	gameLoop();
-	//				V
-	// while(1){
-	// 	waitForAndSelectOption();
-	// 	// getmaxyx(stdscr, row, col);
-	// 	//endGame();
-	// }
 	return 0;
 }

@@ -51,13 +51,6 @@ void mainMenuInit(){
 	clearScreen();
 }
 
-//prints the games title
-//screen.h
-void printTitle(){
-	char * fileName = "./resources/Title_3.txt";
-	drawASCIIGraphic(fileName);
-}
-
 //user can set a user name (USER_NAME_LENGTH long, but isn't being checked for yet)
 void setUserName(){
 	userName = malloc(USER_NAME_LENGTH + 1);
@@ -91,18 +84,6 @@ void endGame(){
 	endwin();
 	free(userName);
 	exit(0);
-}
-
-//screen.h
-void drawOptions(){
-	move(row - 19, 10);
-	attron(COLOR_PAIR(2));
-	drawDialog("About game", FALSE, NORMAL_DELAY);
-	move(row - 20, 10);
-	attron(COLOR_PAIR(1));
-	drawDialog("Start game\n", FALSE, NORMAL_DELAY);
-	attron(COLOR_PAIR(2)); 
-
 }
 
 void selectOption(){

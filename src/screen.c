@@ -201,6 +201,23 @@ uint8_t moveOption(struct moveDirection moveDirection)
 	}
 }
 
+//screen.h
+void drawOptions(){
+	move(row - 19, 10);
+	attron(COLOR_PAIR(2));
+	drawDialog("About game", FALSE, NORMAL_DELAY);
+	move(row - 20, 10);
+	attron(COLOR_PAIR(1));
+	drawDialog("Start game\n", FALSE, NORMAL_DELAY);
+	attron(COLOR_PAIR(2)); 
+
+}
+
+void printTitle(){
+	char * fileName = "./resources/Title_3.txt";
+	drawASCIIGraphic(fileName);
+}
+
 //delay in milliseconds
 #ifdef __linux__
 void msDelay(uint32_t milliseconds)

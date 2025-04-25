@@ -42,5 +42,7 @@ void msDelay(uint32_t milliseconds);
 void drawDialogScreen(char * dialogFile);
 void drawOption(char * optionText, uint8_t optionNr);
 uint8_t moveOptionMainMenu(int8_t direction);
+void printTitle();
+void drawOptions();
 
 #endif
