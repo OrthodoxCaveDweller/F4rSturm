@@ -20,11 +20,11 @@ enum options
 };
 
 //STRUCTS
-extern struct moveDirection
+struct moveDirection
 {
     int8_t x;
     int8_t y;
-} moveDirection;
+};
 
 //GLOBALS
 extern int row, col;
@@ -33,6 +33,8 @@ extern char * userName;
 extern uint8_t continueGame;
 extern uint8_t selectedOption1d;
 extern enum selectedOption2d selectedOption2d;
+extern struct moveDirection moveDirection;
+
 
 //DEFINES
 #define NUMBER_OF_OPTIONS 4

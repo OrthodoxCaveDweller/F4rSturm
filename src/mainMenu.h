@@ -26,7 +26,7 @@ void endGame();
 void selectOption();
 void exitOption();
 void disableTyping();
-void eneableTyping(); 
+void enableTyping(); 
 void aboutScreen();
 
 #endif

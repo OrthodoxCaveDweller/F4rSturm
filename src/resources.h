@@ -11,8 +11,13 @@
 #include "lib/cJSON.h"
 #include <unistd.h>
 
+#ifndef R_OK
+#define R_OK 4
+#endif
+
 char * getDialogText(char * dialogFile);
 char ** getOptions(char * dialogFile);
+void freeOptions(char ** options);
 char * getASCIIImage(char * fileName);
 cJSON * readJSONFile(char* fileName);
 

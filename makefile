@@ -14,32 +14,20 @@ LFLAGS	 = -lncurses
 # -c flag generates object code for separate files
 
 
-all: $(OBJS)
+all: bin $(OUT)
+
+bin:
+	mkdir -p bin
+
+$(OUT): $(OBJS)
 	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS)
 
-
-# create/compile the individual files >>separately<<
-bin/main.o: src/main.c
-	$(CC) $(FLAGS) src/main.c -o bin/main.o 
-
-bin/mainMenu.o: src/mainMenu.c
-	$(CC) $(FLAGS) src/mainMenu.c -o bin/mainMenu.o
-
-bin/screen.o: src/screen.c
-	$(CC) $(FLAGS) src/screen.c -o bin/screen.o
-
-bin/cJSON.o: src/lib/cJSON.c
+bin/cJSON.o: src/lib/cJSON.c src/lib/cJSON.h | bin
 	$(CC) $(FLAGS) src/lib/cJSON.c -o bin/cJSON.o
 
-bin/global.o: src/global.c
-	$(CC) $(FLAGS) src/global.c -o bin/global.o
-
-bin/resources.o: src/resources.c
-	$(CC) $(FLAGS) src/resources.c -o bin/resources.o
-
-bin/game.o: src/game.c
-	$(CC) $(FLAGS) src/game.c -o bin/game.o
+bin/%.o: src/%.c $(HEADER) | bin
+	$(CC) $(FLAGS) $< -o $@
 
 # clean house
 clean:
-	rm -f $(OBJS) $(OUT)
+	rm -f $(OBJS) $(OUT) $(OUT).exe
